@@ -1,6 +1,6 @@
-# Como Criar Formatação Dinâmica para Medidas no Power BI
+## Como Criar Formatação Dinâmica para Medidas no Power BI
 
-1. **Crie uma medida qualquer.**
+1. Crie uma medida qualquer.
 2. No formato da medida, selecione a opção **"Dinâmico"**.
 3. Preencha com a fórmula abaixo:
 
