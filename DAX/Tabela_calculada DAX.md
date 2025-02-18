@@ -1,3 +1,4 @@
+``` f_MARGEM = 
 VAR tbl = 
 SUMMARIZE(
     f_TABELA_FATO,
@@ -720,3 +721,5 @@ UNION(
     OL_Posterior_Margem_Bruta,
     OL_Posterior_Margem_INESPERADO,
     OL_Posterior_Margem_Contribuicao)
+```
+RETURN  resultado ```
