@@ -24,3 +24,29 @@ VAR _Formato =
     )
 RETURN
 """" & FORMAT(SELECTEDMEASURE(), _Formato) & """"
+
+```
+Abaixo é uma opção com a medida Sem o R$ e sem casas decimais
+
+```dax
+VAR _Valor = SELECTEDMEASURE()
+VAR _Formato = 
+    SWITCH(
+        TRUE(),
+        //Valores Negativos
+        _Valor <= -1000000000000, "#0,,,,00T; #0,,,, T",
+        _Valor <= -1000000000, "#0,,,.00B; #0,,, BI",
+        _Valor <= -1000000, "#0,,.00M; #0,, MI",
+        _Valor <= -1000, "#0,.00K; #0, K",
+        
+        //Valores Positivos        
+        _Valor >= 1000000000000, "#0,,,, T",
+        _Valor >= 1000000000, "#0,,, BI",
+        _Valor >= 1000000, "#0,, MI",
+        _Valor >= 1000, "#0, K",
+        "0;0"
+    )
+RETURN
+"""" & FORMAT(SELECTEDMEASURE(), _Formato) & """"
+
+```
