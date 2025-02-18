@@ -9,9 +9,14 @@ VAR _Valor = SELECTEDMEASURE()
 VAR _Formato = 
     SWITCH(
         TRUE(),
+        //Valores Negativos
+        _Valor <= -1000000000000, "R$ #,#0,,,,00T; R$ #,#0,,,,.0 T",
         _Valor <= -1000000000, "R$ #,#0,,,.00B; R$ #,#0,,,.0 BI",
         _Valor <= -1000000, "R$ #,#0,,.00M; R$ #,#0,,.0 MI",
         _Valor <= -1000, "R$ #,#0,.00K; R$ #,#0,.0 K",
+        
+        //Valores Positivos        
+        _Valor >= 1000000000000, "R$ #,#0,,,,.0 T",
         _Valor >= 1000000000, "R$ #,#0,,,.0 BI",
         _Valor >= 1000000, "R$ #,#0,,.0 MI",
         _Valor >= 1000, "R$ #,#0,.0 K",
