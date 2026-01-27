@@ -1,73 +1,100 @@
+## 📊 Power BI – DRE (Demonstrativo de Resultado do Exercício)
 
-# 📊 Power BI – DRE (Demonstrativo de Resultado do Exercício) 
-👉 **[DRE](https://app.powerbi.com/view?r=eyJrIjoiOTY3ZWYzOTAtMWZlZC00YzNhLWFjZmYtZDVlMDliMjM1ZmUzIiwidCI6ImVhMDhmYTU2LTVhMzYtNGIxOS05NTgzLWNjNTBmNmIxN2Y3MiJ9)**
+👉 **[Acessar relatório interativo](https://app.powerbi.com/view?r=eyJrIjoiOTY3ZWYzOTAtMWZlZC00YzNhLWFjZmYtZDVlMDliMjM1ZmUzIiwidCI6ImVhMDhmYTU2LTVhMzYtNGIxOS05NTgzLWNjNTBmNmIxN2Y3MiJ9)**
 
-Todo time financeiro, em algum momento, precisa de um **relatório de DRE claro, confiável e visualmente bem estruturado**.  
-Neste projeto, desenvolvi um **DRE completo em Power BI**, cobrindo desde o **ETL e modelagem de dados** até **DAX avançado** e **design de layout**.
+Relatório de **DRE desenvolvido em Power BI**, cobrindo todo o processo desde **ETL e modelagem de dados** até **DAX avançado** e **design de layout**.
 
-O objetivo foi oferecer **diferentes formas de leitura do DRE**, permitindo que gestores e analistas escolham a visualização que mais faz sentido para o seu perfil de decisão.
-
----
-
-## 🎯 Objetivo do Projeto
-
-- Consolidar informações financeiras em um **DRE analítico e gerencial**
-- Facilitar a análise de **receita, custos, despesas e resultado**
-- Permitir comparações ao longo do tempo
-- Oferecer **diferentes layouts** para diferentes perfis de usuários
+O projeto apresenta **3 variações visuais de DRE**, permitindo que gestores escolham a visualização mais adequada ao seu perfil de análise.
 
 ---
 
-## 📈 O que o relatório entrega
-
-- Visão estruturada do **Demonstrativo de Resultado**
-- Análise de desempenho financeiro por período
-- Destaque para margens e resultado operacional
-- Navegação simples e focada em tomada de decisão
-
-O projeto conta com **3 versões de layout**, permitindo que o gerente ou gestor utilize aquela que mais agrada visualmente ou que facilite sua análise no dia a dia.
+### 🔍 Principais entregas
+- Análise de **Receita, Custos, Despesas e Resultado**
+- Visão gerencial do desempenho financeiro
+- Comparações ao longo do tempo
+- Layouts pensados para tomada de decisão
 
 ---
 
-## 🛠️ Tecnologias e Técnicas Utilizadas
-
-- **Power BI**
-- **Power Query (ETL)**
-- **Modelagem de Dados**
-- **DAX Avançado**
-- **Figma** (criação e organização do layout visual)
+### 🛠️ Stack
+**Power BI | Power Query | Modelagem de Dados | DAX | Figma**
 
 ---
 
-## 🖼️ Visuais do Relatório
+### 🖼️ Visuais do relatório
 
-> *Obs.: as imagens abaixo representam os layouts desenvolvidos no Power BI.*
+[<img width="900" alt="DRE 3" src="https://github.com/user-attachments/assets/240d5a8b-7c3f-49ba-97b0-19970e44e588" />](https://app.powerbi.com/view?r=eyJrIjoiOTY3ZWYzOTAtMWZlZC00YzNhLWFjZmYtZDVlMDliMjM1ZmUzIiwidCI6ImVhMDhmYTU2LTVhMzYtNGIxOS05NTgzLWNjNTBmNmIxN2Y3MiJ9)
 
+---
+## 📊 Power BI – Controle de Acesso (Parada de Equipamentos – Refinaria)
 
-<img width="942" height="529" alt="img_dre1" src="https://github.com/user-attachments/assets/258377d2-7a64-42a1-9295-dc125f9c860e" />
-<img width="942" height="529" alt="img_dre2" src="https://github.com/user-attachments/assets/a9ebe2aa-5813-4c3c-a3d9-b9fb26a43662" />
-<img width="942" height="529" alt="img_dre3" src="https://github.com/user-attachments/assets/240d5a8b-7c3f-49ba-97b0-19970e44e588" />
-<img width="710" height="572" alt="img_dre4" src="https://github.com/user-attachments/assets/730d6cce-d9f9-466f-9b84-d63af3761392" />
-<img width="1017" height="703" alt="img_dre5" src="https://github.com/user-attachments/assets/655d3649-45f6-42e0-9f06-2927976d9896" />
+👉 **[Acessar relatório interativo](https://app.powerbi.com/view?r=eyJrIjoiYjYwODQxYWUtYWY0MS00NTcwLWIxMjYtZDE4OGMwNTgzNjFkIiwidCI6ImVhMDhmYTU2LTVhMzYtNGIxOS05NTgzLWNjNTBmNmIxN2Y3MiJ9)**
+
+Relatório desenvolvido em **Power BI** para **controle de pessoas durante períodos de Parada de Equipamentos** em uma refinaria.
+
+Durante a parada, o fluxo de pessoas aumentava em mais de **50%**, exigindo maior visibilidade para planejamento operacional e suporte a áreas como **copa, limpeza, segurança, bombeiros e infraestrutura**.
 
 ---
 
-## 🔗 Relatório Interativo (Power BI)
-
-O relatório completo e interativo pode ser acessado no link abaixo:
-
-👉 **[Acessar relatório Power BI](https://app.powerbi.com/view?r=eyJrIjoiOTY3ZWYzOTAtMWZlZC00YzNhLWFjZmYtZDVlMDliMjM1ZmUzIiwidCI6ImVhMDhmYTU2LTVhMzYtNGIxOS05NTgzLWNjNTBmNmIxN2Y3MiJ9)**
-
----
-
-## 📌 Observação
-
-Este projeto tem caráter **demonstrativo**, com foco em análise, visualização de dados e boas práticas em Power BI.  
-O arquivo `.pbix` não é disponibilizado.
+### 🔍 Principais entregas
+- Controle de **entrada e saída de pessoas**
+- Visão consolidada do volume diário durante a parada
+- Apoio ao planejamento de recursos e serviços
+- Análise operacional para tomada de decisão
 
 ---
 
-## 📫 Contato
+### 🛠️ Stack
+**Power BI | Power Query | Modelagem de Dados | DAX**
 
-- **LinkedIn:** https://www.linkedin.com/in/arthurweslen/
-- **GitHub:** https://github.com/arthurweslen
+---
+
+### 🖼️ Visuais do relatório
+
+[<img width="868" height="485" alt="IMG POPULAÇÃO" src="https://github.com/user-attachments/assets/e1b89883-2012-40eb-9415-a7d32740c302" />](https://app.powerbi.com/view?r=eyJrIjoiYjYwODQxYWUtYWY0MS00NTcwLWIxMjYtZDE4OGMwNTgzNjFkIiwidCI6ImVhMDhmYTU2LTVhMzYtNGIxOS05NTgzLWNjNTBmNmIxN2Y3MiJ9)
+
+---
+
+## 📊 Power BI – Planejamento e Execução (Parada de Equipamentos)
+
+👉 **[Acessar relatório interativo](https://app.powerbi.com/view?r=eyJrIjoiZjYzNTMzYzktN2NiYi00MTAwLWJhZTYtZjE4OWU3NDg1ZDg1IiwidCI6ImVhMDhmYTU2LTVhMzYtNGIxOS05NTgzLWNjNTBmNmIxN2Y3MiJ9)**
+
+Relatório desenvolvido para **acompanhamento de projetos durante a Parada de Equipamentos** em uma refinaria, comparando **planejamento x execução diária**.
+
+O objetivo foi identificar atrasos, entender desvios e apoiar a definição das **ações do dia seguinte**, garantindo maior controle operacional.
+
+---
+
+### 🔍 Principais entregas
+- Visão consolidada de **projetos e atividades**
+- Comparação **planejado x realizado**
+- Identificação de atrasos e riscos
+- Suporte à tomada de decisão diária
+
+---
+
+### 🛠️ Stack
+**Power BI | Power Query | Modelagem de Dados | DAX | Power Automate | SharePoint | Oracle Primavera**
+
+---
+
+### 🔄 Integração e Automação
+- Extração diária de arquivos **CSV** do sistema **Oracle Primavera**
+- Armazenamento dos arquivos em **SharePoint**
+- Gatilho automático via **Power Automate** para atualização do Power BI
+- Processo completo de **ETL**, incluindo:
+  - Limpeza e tratamento de dados
+  - Correção de tipos e datas
+  - Criação de tabelas dimensão
+  - Modelagem **Star Schema**
+  - Medidas com **inteligência de tempo** e **acumulados**
+
+---
+
+### 🖼️ Visuais do relatório
+
+[<img width="900" alt="Planejamento – Parada de Equipamentos" src="COLE_AQUI_A_IMAGEM" />](https://app.powerbi.com/view?r=eyJrIjoiZjYzNTMzYzktN2NiYi00MTAwLWJhZTYtZjE4OWU3NDg1ZDg1IiwidCI6ImVhMDhmYTU2LTVhMzYtNGIxOS05NTgzLWNjNTBmNmIxN2Y3MiJ9)
+
+---
+
+📌 *Os projetos têm caráter demonstrativo. O arquivo `.pbix` não é disponibilizado.*
