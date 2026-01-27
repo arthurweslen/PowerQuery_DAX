@@ -1,5 +1,6 @@
 
-# 📊 Power BI – DRE (Demonstrativo de Resultado do Exercício)
+# 📊 Power BI – DRE (Demonstrativo de Resultado do Exercício) 
+👉 **[DRE](https://app.powerbi.com/view?r=eyJrIjoiOTY3ZWYzOTAtMWZlZC00YzNhLWFjZmYtZDVlMDliMjM1ZmUzIiwidCI6ImVhMDhmYTU2LTVhMzYtNGIxOS05NTgzLWNjNTBmNmIxN2Y3MiJ9)**
 
 Todo time financeiro, em algum momento, precisa de um **relatório de DRE claro, confiável e visualmente bem estruturado**.  
 Neste projeto, desenvolvi um **DRE completo em Power BI**, cobrindo desde o **ETL e modelagem de dados** até **DAX avançado** e **design de layout**.
@@ -42,9 +43,12 @@ O projeto conta com **3 versões de layout**, permitindo que o gerente ou gestor
 
 > *Obs.: as imagens abaixo representam os layouts desenvolvidos no Power BI.*
 
-![DRE - Layout 1](images/dre_layout_1.png)
-![DRE - Layout 2](images/dre_layout_2.png)
-![DRE - Layout 3](images/dre_layout_3.png)
+
+<img width="942" height="529" alt="img_dre1" src="https://github.com/user-attachments/assets/258377d2-7a64-42a1-9295-dc125f9c860e" />
+<img width="942" height="529" alt="img_dre2" src="https://github.com/user-attachments/assets/a9ebe2aa-5813-4c3c-a3d9-b9fb26a43662" />
+<img width="942" height="529" alt="img_dre3" src="https://github.com/user-attachments/assets/240d5a8b-7c3f-49ba-97b0-19970e44e588" />
+<img width="710" height="572" alt="img_dre4" src="https://github.com/user-attachments/assets/730d6cce-d9f9-466f-9b84-d63af3761392" />
+<img width="1017" height="703" alt="img_dre5" src="https://github.com/user-attachments/assets/655d3649-45f6-42e0-9f06-2927976d9896" />
 
 ---
 
@@ -65,5 +69,5 @@ O arquivo `.pbix` não é disponibilizado.
 
 ## 📫 Contato
 
-- **LinkedIn:** (seu link aqui)
-- **GitHub:** (seu perfil)
+- **LinkedIn:** https://www.linkedin.com/in/arthurweslen/
+- **GitHub:** https://github.com/arthurweslen
