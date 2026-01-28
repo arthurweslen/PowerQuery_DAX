@@ -2,16 +2,17 @@
 
 ## 📌 Sobre o Repositório
 
-Este repositório foi criado com o propósito de armazenar e compartilhar cálculos complexos ou soluções que demandaram um esforço maior em DAX e Power Query. A ideia é facilitar a consulta e reutilização no dia a dia, tornando a modelagem de dados mais eficiente e organizada.
+Este repositório foi criado com o propósito de armazenar e compartilhar cálculos complexos ou soluções que demandaram um esforço maior em DAX e Power Query. Também está presente alguns projetos/portfólio, que são um embeded de alguns relatórios BI. A ideia é facilitar a consulta e reutilização no dia a dia, tornando a modelagem de dados mais eficiente e organizada, mas também é um lugar fácil para mostrar meus relatórios publicado de forma unificada.
 
 Aqui, você encontrará abordagens que podem servir como referência para resolver desafios comuns ou situações específicas no desenvolvimento de relatórios e ETL dentro do Power BI.
 
 ## 📂 Estrutura do Repositório
 
-O repositório está organizado em duas pastas principais:
+O repositório está organizado em 3 pastas principais:
 
 - **📁 DAX** → Contém expressões DAX utilizadas para cálculos avançados, medidas otimizadas e soluções para cenários complexos dentro do Power BI.
 - **📁 PowerQuery** → Reúne trechos de código em M (Power Query) para manipulação de dados, transformações eficientes e automação de processos no Power BI.
+- **📁 Relatórios** → Em um único arquivo, eu tenho todos os meus relatórios PBI (portfólio) para navegação.
 
 ## 🎯 Objetivo
 
