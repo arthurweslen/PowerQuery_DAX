@@ -2,22 +2,46 @@
 
 ## 📌 Sobre o Repositório
 
-Este repositório foi criado com o propósito de armazenar e compartilhar cálculos complexos ou soluções que demandaram um esforço maior em DAX e Power Query. Também está presente alguns projetos/portfólio, que são um embeded de alguns relatórios BI. A ideia é facilitar a consulta e reutilização no dia a dia, tornando a modelagem de dados mais eficiente e organizada, mas também é um lugar fácil para mostrar meus relatórios publicado de forma unificada.
+Este repositório reúne soluções práticas em **DAX**, **Power Query** e **Visuais HTML** desenvolvidas no dia a dia com Power BI. A ideia é centralizar código reutilizável, projetos de portfólio e referências visuais em um único lugar — fácil de consultar, fácil de adaptar.
 
-Aqui, você encontrará abordagens que podem servir como referência para resolver desafios comuns ou situações específicas no desenvolvimento de relatórios e ETL dentro do Power BI.
-
-## 📂 Estrutura do Repositório
-
-O repositório está organizado em 3 pastas principais:
-
-- **📁 DAX** → Contém expressões DAX utilizadas para cálculos avançados, medidas otimizadas e soluções para cenários complexos dentro do Power BI.
-- **📁 PowerQuery** → Reúne trechos de código em M (Power Query) para manipulação de dados, transformações eficientes e automação de processos no Power BI.
-- **📁 Relatórios** → Em um único arquivo, eu tenho todos os meus relatórios PBI (portfólio) para navegação.
-
-## 🎯 Objetivo
-
-Este repositório serve como um repositório pessoal de conhecimento, mas também pode ser útil para outros profissionais que trabalham com modelagem de dados e desejam aprender ou relembrar soluções específicas de DAX e Power Query. A intenção é manter um repositório vivo, sempre atualizado conforme novos desafios surgirem.
+Aqui você encontra desde cálculos avançados e transformações de dados até cards HTML customizados prontos para uso em relatórios.
 
 ---
 
-💡 **Sugestões e contribuições são sempre bem-vindas!** Se você tem uma solução interessante ou uma dúvida sobre um cálculo específico, fique à vontade para abrir uma issue ou um pull request. 🚀
+## 📂 Estrutura do Repositório
+
+| Pasta | Conteúdo |
+|-------|----------|
+| 📁 **DAX** | Medidas otimizadas, cálculos avançados e soluções para cenários complexos no Power BI |
+| 📁 **PowerQuery** | Trechos em M para manipulação de dados, transformações e automação de processos |
+| 📁 **Relatórios** | Portfólio com relatórios Power BI publicados — navegação centralizada em um único arquivo |
+| 📁 **Visuals** | Cards HTML para o visual *HTML Content* — cada notebook traz o preview do card e o código DAX completo |
+
+---
+
+## 🎨 Visuals — Cards HTML
+
+Cards prontos para usar no visual **HTML Content** (Daniel Marsh-Patrick). Cada arquivo `.ipynb` contém a imagem de preview e o código DAX completo com o bloco `VALORES` no topo para fácil adaptação.
+
+| Card | Descrição |
+|------|-----------|
+| `Card_Minimalista_HTML` | Card simples com faturamento e variação YoY |
+| `Card_Compact_Row_HTML` | Métricas em linha horizontal com pontinhos decorativos |
+| `Card_Icone_Canto_HTML` | Ícone SVG no canto superior direito |
+| `Card_Header_Colorido_HTML` | Header com fundo colorido e gradiente |
+| `Card_Barra_Lateral_HTML` | Barra colorida lateral com status de meta |
+| `Card_Executivo_HTML` | Card executivo completo: barra de progresso + ícone + insight |
+| `Card_Flip_HTML` | Card com animação flip 3D (frente/verso) por cliente |
+| `Card_Slide_HTML` | Card com animação slide horizontal (frente/verso) por cliente |
+
+---
+
+## 🎯 Objetivo
+
+Repositório pessoal de conhecimento e referência — mas público para quem quiser aprender ou reaproveitar soluções de DAX, Power Query e visuais HTML no Power BI.
+
+O repositório está sempre crescendo conforme novos desafios surgem.
+
+---
+
+💡 **Sugestões são bem-vindas!** Abra uma issue ou pull request se tiver uma solução interessante. 🚀
