@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentação — Razão Consolidado | Green4T</title>
+<style>
+  :root {
+    --green: #44AD4D;
+    --teal: #3EBED3;
+    --teal-dark: #006060;
+    --teal-ui: #00AEAE;
+    --orange: #FF9900;
+    --gray: #A5A5A5;
+    --black: #000000;
+    --bg: #F4F6F8;
+    --surface: #FFFFFF;
+    --border: #E2E8ED;
+    --text: #1A2530;
+    --text-muted: #5A6A7A;
+    --fact-bg: #EBF8FF;
+    --fact-border: #3EBED3;
+    --dim-bg: #F0FBF1;
+    --dim-border: #44AD4D;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--surface);
+    border-bottom: 3px solid var(--teal);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  /* SVG Logo inline */
+  .logo-svg { height: 36px; }
+
+  .doc-badge {
+    background: var(--teal);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+
+  .header-meta {
+    text-align: right;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .header-meta strong { color: var(--text); display: block; font-size: 13px; }
+
+  /* NAV SIDEBAR */
+  .layout {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    gap: 28px;
+  }
+
+  nav {
+    width: 220px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 88px;
+    height: fit-content;
+  }
+
+  nav ul { list-style: none; }
+  nav ul li + li { margin-top: 2px; }
+  nav a {
+    display: block;
+    padding: 7px 12px;
+    border-radius: 6px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: all .15s;
+  }
+  nav a:hover, nav a.active {
+    background: var(--teal);
+    color: #fff;
+  }
+  nav .nav-section {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    padding: 14px 12px 4px;
+  }
+
+  /* MAIN CONTENT */
+  main { flex: 1; min-width: 0; }
+
+  /* HERO SECTION */
+  .hero {
+    background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal-ui) 60%, var(--teal) 100%);
+    border-radius: 12px;
+    padding: 36px 40px;
+    color: #fff;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    right: -40px; bottom: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.06);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    right: 60px; bottom: 20px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.04);
+  }
+
+  .hero h1 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .hero p { opacity: .85; max-width: 620px; font-size: 14px; }
+
+  .hero-tags { display: flex; gap: 8px; margin-top: 20px; flex-wrap: wrap; }
+  .tag {
+    background: rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.3);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* STAT CARDS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--teal);
+  }
+  .stat-card.green { border-top-color: var(--green); }
+  .stat-card.orange { border-top-color: var(--orange); }
+  .stat-card.dark { border-top-color: var(--teal-dark); }
+
+  .stat-value { font-size: 32px; font-weight: 800; color: var(--teal-dark); line-height: 1; }
+  .stat-card.green .stat-value { color: var(--green); }
+  .stat-card.orange .stat-value { color: var(--orange); }
+  .stat-card.dark .stat-value { color: var(--teal-dark); }
+  .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 6px; font-weight: 500; }
+
+  /* SECTIONS */
+  section { margin-bottom: 32px; }
+  .section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .card-header {
+    padding: 14px 20px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-body { padding: 20px; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--teal-dark);
+    color: #fff;
+    padding: 9px 12px;
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  th:first-child { border-radius: 6px 0 0 0; }
+  th:last-child { border-radius: 0 6px 0 0; }
+  td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F8FAFB; }
+
+  /* BADGES */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .badge-fact { background: #EBF8FF; color: #0070A0; border: 1px solid #B3E4F4; }
+  .badge-dim { background: #F0FBF1; color: #2A7A30; border: 1px solid #B3E4B6; }
+  .badge-calc { background: #FFF7EB; color: #8A5500; border: 1px solid #FFD591; }
+  .badge-param { background: #F5F0FF; color: #5A2A8A; border: 1px solid #D4B8FF; }
+  .badge-active { background: #F0FBF1; color: #2A7A30; }
+  .badge-inactive { background: #FFF0F0; color: #A00; }
+
+  /* RELATIONSHIP DIAGRAM */
+  .rel-diagram {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    font-size: 12px;
+  }
+
+  .rel-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 12px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: #FAFBFC;
+    border: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .rel-row:hover { border-color: var(--teal); background: #F0FBFD; }
+
+  .rel-from { font-weight: 700; color: var(--teal-dark); min-width: 180px; }
+  .rel-col { color: var(--text-muted); font-family: monospace; font-size: 11px; }
+  .rel-arrow { margin: 0 12px; color: var(--teal); font-size: 16px; font-weight: 300; }
+  .rel-to { font-weight: 700; color: var(--green); min-width: 160px; }
+  .rel-dir { margin-left: auto; font-size: 11px; color: var(--text-muted); background: var(--bg); padding: 2px 8px; border-radius: 4px; }
+
+  /* MEASURE FOLDER */
+  .folder-group { margin-bottom: 20px; }
+  .folder-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .folder-icon { font-size: 14px; }
+
+  .measure-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+  }
+  .measure-chip {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    transition: all .15s;
+    position: relative;
+  }
+  .measure-chip:hover { border-color: var(--teal); background: #F0FBFD; }
+  .measure-chip .m-name { font-weight: 600; color: var(--text); }
+  .measure-chip .m-desc { color: var(--text-muted); font-size: 11px; margin-top: 2px; }
+
+  /* DOWNSTREAM */
+  .downstream-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .downstream-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    background: var(--surface);
+    border-left: 4px solid var(--teal);
+  }
+  .downstream-card h4 { font-size: 14px; font-weight: 700; color: var(--teal-dark); }
+  .downstream-card p { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* ALERT BOX */
+  .alert {
+    padding: 14px 18px;
+    border-radius: 8px;
+    border-left: 4px solid;
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+  .alert-info { background: #EBF8FF; border-color: var(--teal); color: var(--teal-dark); }
+  .alert-warn { background: #FFFAEB; border-color: var(--orange); color: #7A5000; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--gray);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  /* PRINT */
+  @media print {
+    header { position: static; }
+    nav { display: none; }
+    .layout { padding: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-container">
+    <!-- Green4T Logo SVG inline -->
+    <svg class="logo-svg" viewBox="0 0 180 50" xmlns="http://www.w3.org/2000/svg">
+      <!-- "green" text -->
+      <text x="2" y="38" font-family="'Segoe UI', Arial, sans-serif" font-size="36" font-weight="800" fill="#44AD4D">green</text>
+      <!-- 4T block pixelado -->
+      <rect x="106" y="4" width="14" height="14" rx="2" fill="#3EBED3"/>
+      <rect x="122" y="4" width="14" height="14" rx="2" fill="#3EBED3" opacity=".5"/>
+      <rect x="106" y="20" width="14" height="14" rx="2" fill="#3EBED3" opacity=".7"/>
+      <rect x="122" y="20" width="14" height="14" rx="2" fill="#3EBED3"/>
+      <rect x="138" y="4" width="14" height="14" rx="2" fill="#3EBED3" opacity=".3"/>
+      <rect x="138" y="20" width="14" height="30" rx="2" fill="#3EBED3" opacity=".6"/>
+      <text x="107" y="42" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">4T</text>
+    </svg>
+    <span class="doc-badge">Documentação Técnica</span>
+  </div>
+  <div class="header-meta">
+    <strong>Razão Consolidado — Modelo Semântico Power BI</strong>
+    Gerado em: 22/06/2026 &nbsp;|&nbsp; DirectQuery &nbsp;|&nbsp; Ambiente: Desktop
+  </div>
+</header>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-section">Visão Geral</div>
+    <ul>
+      <li><a href="#overview" class="active">📋 Resumo</a></li>
+      <li><a href="#downstream">🔗 Relatórios Downstream</a></li>
+    </ul>
+    <div class="nav-section">Modelo</div>
+    <ul>
+      <li><a href="#tabelas">📦 Tabelas</a></li>
+      <li><a href="#relacionamentos">↔ Relacionamentos</a></li>
+      <li><a href="#medidas">📐 Medidas DAX</a></li>
+    </ul>
+    <div class="nav-section">Qualidade</div>
+    <ul>
+      <li><a href="#qd">✅ Qualidade de Dados</a></li>
+      <li><a href="#rls">🔒 Segurança (RLS)</a></li>
+      <li><a href="#notas">📝 Notas Técnicas</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <div class="hero" id="overview">
+      <h1>Razão Consolidado</h1>
+      <p>Modelo semântico central da Green4T. Fonte única de verdade financeira para todos os relatórios FP&amp;A, conectado via <strong>DirectQuery</strong> ao IFS Oracle. Serve como base de dados para 8 relatórios downstream, incluindo Realizado G4T, MRR, Controle de Gente e Operações.</p>
+      <div class="hero-tags">
+        <span class="tag">DirectQuery</span>
+        <span class="tag">IFS Oracle SQL</span>
+        <span class="tag">FP&amp;A Hub</span>
+        <span class="tag">DRE · Balanço · SG&amp;A</span>
+        <span class="tag">Brasil + Latam</span>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">114</div>
+        <div class="stat-label">Relacionamentos</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-value">190</div>
+        <div class="stat-label">Medidas DAX</div>
+      </div>
+      <div class="stat-card orange">
+        <div class="stat-value">8</div>
+        <div class="stat-label">Relatórios Downstream</div>
+      </div>
+      <div class="stat-card dark">
+        <div class="stat-value">1066+</div>
+        <div class="stat-label">Colunas no Modelo</div>
+      </div>
+    </div>
+
+    <!-- DOWNSTREAM -->
+    <section id="downstream">
+      <div class="section-title">🔗 Relatórios Downstream (DirectQuery)</div>
+      <div class="alert alert-info">
+        Todos os relatórios abaixo consomem dados via <strong>DirectQuery</strong> conectados a este modelo. Qualquer mudança estrutural aqui (remoção de tabela, renomeação de coluna) impacta diretamente esses relatórios.
+      </div>
+      <div class="downstream-grid">
+        <div class="downstream-card">
+          <h4>📊 Realizado G4T</h4>
+          <p>Resultado financeiro consolidado Brasil + Latam. Principal relatório executivo do CFO.</p>
+        </div>
+        <div class="downstream-card">
+          <h4>📊 MRR e Indicadores de Receita</h4>
+          <p>Monthly Recurring Revenue, TCV e indicadores comerciais integrados ao Salesforce.</p>
+        </div>
+        <div class="downstream-card">
+          <h4>📊 Controle de Gente</h4>
+          <p>Headcount, admissões, demissões, turnover e custos com pessoal.</p>
+        </div>
+        <div class="downstream-card">
+          <h4>📊 Monitoramento TIM</h4>
+          <p>Acompanhamento operacional do contrato TIM.</p>
+        </div>
+        <div class="downstream-card">
+          <h4>📊 Razão Consolidado</h4>
+          <p>Razão contábil detalhado com drill-down por conta e centro de custo.</p>
+        </div>
+        <div class="downstream-card">
+          <h4>📊 Clientes e Contratos</h4>
+          <p>Pipeline comercial, contratos ativos e métricas de clientes.</p>
+        </div>
+        <div class="downstream-card">
+          <h4>📊 Despesas</h4>
+          <p>SG&amp;A detalhado, análise de fornecedores e pacotes de despesas.</p>
+        </div>
+        <div class="downstream-card">
+          <h4>📊 Operações — Resultado e KPIs</h4>
+          <p>KPIs operacionais, EBITDA por unidade de negócio e linha de serviço.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABELAS -->
+    <section id="tabelas">
+      <div class="section-title">📦 Tabelas do Modelo</div>
+
+      <!-- FATOS -->
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-header" style="border-left: 4px solid #3EBED3;">
+          📊 Tabelas Fato
+        </div>
+        <div class="card-body" style="padding: 0;">
+          <table>
+            <thead>
+              <tr>
+                <th>Tabela</th>
+                <th>Tipo</th>
+                <th>Chave Principal</th>
+                <th>Descrição</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>f_Resultado_Consolidado</strong></td>
+                <td><span class="badge badge-fact">Fato</span></td>
+                <td><code>Data_Lancto · Account · Cost_Cent · Projeto</code></td>
+                <td>Lançamentos consolidados Brasil + Latam. Principal fato financeira do modelo.</td>
+              </tr>
+              <tr>
+                <td><strong>f_Razao_IFS</strong></td>
+                <td><span class="badge badge-fact">Fato</span></td>
+                <td><code>Data_Lancto · Account · N_Lancto</code></td>
+                <td>Razão analítico do IFS Oracle. Granularidade de lançamento contábil.</td>
+              </tr>
+              <tr>
+                <td><strong>f_Razao_Meta_Layout</strong></td>
+                <td><span class="badge badge-fact">Fato</span></td>
+                <td><code>Data_Lancto · Account · Empresa</code></td>
+                <td>Layout de meta orçamentária alinhado à estrutura do razão.</td>
+              </tr>
+              <tr>
+                <td><strong>f_Budget</strong></td>
+                <td><span class="badge badge-fact">Fato</span></td>
+                <td><code>Data · Conta Contábil · CODIGO PROJETO</code></td>
+                <td>Budget anual com abertura por projeto, conta e centro de custo.</td>
+              </tr>
+              <tr>
+                <td><strong>f_Orcamento_2025</strong></td>
+                <td><span class="badge badge-fact">Fato</span></td>
+                <td><code>Mes/Ano · Rótulos</code></td>
+                <td>Orçamento 2025 com classificação por recorrência e rótulo DRE.</td>
+              </tr>
+              <tr>
+                <td><strong>f_TCV</strong></td>
+                <td><span class="badge badge-fact">Fato</span></td>
+                <td><code>ID Opp · CODIGO PROJETO · data</code></td>
+                <td>Total Contract Value — integração Salesforce. Base MRR e pipeline comercial.</td>
+              </tr>
+              <tr>
+                <td><strong>f_Admissões</strong></td>
+                <td><span class="badge badge-fact">Fato</span></td>
+                <td><code>Matrícula · Admissão</code></td>
+                <td>Admissões de colaboradores. Alimenta headcount e custos com pessoal.</td>
+              </tr>
+              <tr>
+                <td><strong>f_Demissões</strong></td>
+                <td><span class="badge badge-fact">Fato</span></td>
+                <td><code>Matrícula · Demissão</code></td>
+                <td>Desligamentos de colaboradores. Calcula turnover junto com f_Admissões.</td>
+              </tr>
+              <tr>
+                <td><strong>f_Ativos</strong></td>
+                <td><span class="badge badge-fact">Fato</span></td>
+                <td><code>Matrícula · Competência</code></td>
+                <td>Headcount ativo por competência. Base para snapshot mensal de pessoal.</td>
+              </tr>
+              <tr>
+                <td><strong>f_Passivo</strong></td>
+                <td><span class="badge badge-fact">Fato</span></td>
+                <td><code>Data_Lancto · Account · Empresa</code></td>
+                <td>Lançamentos de passivo/provisões. Complementa DRE com visão patrimonial.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- DIMENSÕES -->
+      <div class="card">
+        <div class="card-header" style="border-left: 4px solid #44AD4D;">
+          🏛 Tabelas Dimensão
+        </div>
+        <div class="card-body" style="padding: 0;">
+          <table>
+            <thead>
+              <tr>
+                <th>Tabela</th>
+                <th>Tipo</th>
+                <th>Chave</th>
+                <th>Descrição</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>d_Calendario</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Date</code></td>
+                <td>Calendário principal. Todas as fatos se relacionam aqui. Contém colunas de Ano, Mês, Trimestre, Mes/Ano, ano.mes e Data_MRR.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Mascara_DRE</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Rótulos de Linha</code></td>
+                <td>Máscara de estrutura DRE. Define ordem, subtotais e rótulos das linhas do resultado.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Plano_de_Contas</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Nº Conta Contábil IFS</code></td>
+                <td>Plano de contas contábil IFS com grau, linha DRE, agrupamentos e pacotes de contas.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Projetos_IFS</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Project_Id</code></td>
+                <td>Cadastro de projetos/contratos do IFS com Manager, datas e flag de recorrência.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Empresa_IFS</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Company</code></td>
+                <td>Empresas do grupo Green4T com geografia (Brasil/Latam) e nome ajustado.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Centro_Custo_IFS</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Cost Cent</code></td>
+                <td>Centros de custo do IFS. Dimensão principal de rateio SG&amp;A.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Centro_Custo_IFS_(RLS RH)</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Cost Cent</code></td>
+                <td>Versão com RLS aplicado para área de RH. Restringe visibilidade de centros de custo.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Agrupadores_Gerenciais</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>CÓDIGO PROJETO ATUAL</code></td>
+                <td>De-Para gerencial de projetos. Permite reagrupamento sem alterar o IFS.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Fornecedor / d_Fornecedores_Pacote_Despesas</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Fornecedor / FORNECEDORES</code></td>
+                <td>Cadastro de fornecedores com ajuste gerencial e agrupamento por pacote de despesas.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Período1 / d_Período2</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>ano.mes</code></td>
+                <td>Controle de período para seleção de intervalo (De/Até). Bidirecional com d_Calendario.</td>
+              </tr>
+              <tr>
+                <td><strong>d_País / d_Location_TCV</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Location</code></td>
+                <td>Dimensão geográfica para visões Latam e filtros de country no TCV.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Rótulos</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Rótulos</code></td>
+                <td>Rótulos de linhas compartilhados entre d_Mascara_DRE e f_Orcamento_2025.</td>
+              </tr>
+              <tr>
+                <td><strong>d_TipCustosBudget</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Gerencial_Conta_Contábil_Reclassificada</code></td>
+                <td>Tipo de custos para budget. Relacionamento 1:1 bidirecional com d_Plano_de_Contas.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Atualização</strong></td>
+                <td><span class="badge badge-param">Parâmetro</span></td>
+                <td><code>d_Atualização</code></td>
+                <td>Data da última atualização do modelo. Exibida nos cards de monitoramento.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELACIONAMENTOS KEY -->
+    <section id="relacionamentos">
+      <div class="section-title">↔ Relacionamentos — Chave de Negócio</div>
+
+      <div class="alert alert-info">
+        O modelo possui <strong>114 relacionamentos</strong> no total. Abaixo estão os relacionamentos de negócio mais relevantes. Relacionamentos com <code>LocalDateTable_*</code> são gerados automaticamente pelo Power BI para colunas de data e não requerem manutenção manual.
+      </div>
+
+      <div class="card">
+        <div class="card-header">Fatos → Calendário (todos OneDirection, Many:One)</div>
+        <div class="card-body" style="padding: 12px 16px;">
+          <div class="rel-row"><span class="rel-from">f_Resultado_Consolidado</span><span class="rel-col">[Data_Lancto]</span><span class="rel-arrow">→</span><span class="rel-to">d_Calendario</span><span class="rel-col">[Date]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_Razao_IFS</span><span class="rel-col">[Data_Lancto]</span><span class="rel-arrow">→</span><span class="rel-to">d_Calendario</span><span class="rel-col">[Date]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_Razao_Meta_Layout</span><span class="rel-col">[Data_Lancto]</span><span class="rel-arrow">→</span><span class="rel-to">d_Calendario</span><span class="rel-col">[Date]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_Orcamento_2025</span><span class="rel-col">[Mes/Ano]</span><span class="rel-arrow">→</span><span class="rel-to">d_Calendario</span><span class="rel-col">[Date]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_TCV</span><span class="rel-col">[data]</span><span class="rel-arrow">→</span><span class="rel-to">d_Calendario</span><span class="rel-col">[Date]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_Budget</span><span class="rel-col">[Data]</span><span class="rel-arrow">→</span><span class="rel-to">d_Calendario</span><span class="rel-col">[Date]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_Admissões / f_Demissões / f_Ativos</span><span class="rel-col">[Competência]</span><span class="rel-arrow">→</span><span class="rel-to">d_Calendario</span><span class="rel-col">[Date]</span><div class="rel-dir">Many → One</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-header">Fatos → Plano de Contas / DRE</div>
+        <div class="card-body" style="padding: 12px 16px;">
+          <div class="rel-row"><span class="rel-from">f_Resultado_Consolidado</span><span class="rel-col">[Account]</span><span class="rel-arrow">→</span><span class="rel-to">d_Plano_de_Contas</span><span class="rel-col">[Nº Conta Contábil IFS]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_Razao_IFS</span><span class="rel-col">[Account]</span><span class="rel-arrow">→</span><span class="rel-to">d_Plano_de_Contas</span><span class="rel-col">[Nº Conta Contábil IFS]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_Budget</span><span class="rel-col">[Conta Contábil]</span><span class="rel-arrow">→</span><span class="rel-to">d_Plano_de_Contas</span><span class="rel-col">[Nº Conta Contábil IFS]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">d_Plano_de_Contas</span><span class="rel-col">[Linha DRE]</span><span class="rel-arrow">→</span><span class="rel-to">d_Mascara_DRE</span><span class="rel-col">[Rótulos de Linha]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">d_Mascara_DRE</span><span class="rel-col">[Rotulos]</span><span class="rel-arrow">→</span><span class="rel-to">d_Rótulos</span><span class="rel-col">[Rótulos]</span><div class="rel-dir">Many → One</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-header">Relacionamentos Bidirecionais (⚠ atenção ao performance)</div>
+        <div class="card-body" style="padding: 12px 16px;">
+          <div class="rel-row"><span class="rel-from">d_Calendario</span><span class="rel-col">[ano.mes]</span><span class="rel-arrow">⟷</span><span class="rel-to">d_Período1</span><span class="rel-col">[ano.mes]</span><div class="rel-dir">Both · Many:Many</div></div>
+          <div class="rel-row"><span class="rel-from">d_Calendario</span><span class="rel-col">[ano.mes]</span><span class="rel-arrow">⟷</span><span class="rel-to">d_Período2</span><span class="rel-col">[ano.mes]</span><div class="rel-dir">Both · Many:Many</div></div>
+          <div class="rel-row"><span class="rel-from">d_Calendario</span><span class="rel-col">[Data_MRR]</span><span class="rel-arrow">⟷</span><span class="rel-to">d_Calendario_MRR</span><span class="rel-col">[Data_MRR]</span><div class="rel-dir">Both · Many:One</div></div>
+          <div class="rel-row"><span class="rel-from">d_Empresa_IFS</span><span class="rel-col">[GRC_Geografia]</span><span class="rel-arrow">⟷</span><span class="rel-to">d_País</span><span class="rel-col">[Location]</span><div class="rel-dir">Both · Many:One</div></div>
+          <div class="rel-row"><span class="rel-from">d_Plano_de_Contas</span><span class="rel-col">[Nº Conta]</span><span class="rel-arrow">⟷</span><span class="rel-to">d_TipCustosBudget</span><span class="rel-col">[Gerencial_Conta]</span><div class="rel-dir">Both · One:One</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEDIDAS -->
+    <section id="medidas">
+      <div class="section-title">📐 Medidas DAX — 190 total</div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> Resultado</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">Receita Bruta</div></div>
+          <div class="measure-chip"><div class="m-name">Receita Líquida</div></div>
+          <div class="measure-chip"><div class="m-name">Custos</div></div>
+          <div class="measure-chip"><div class="m-name">Lucro Bruto</div></div>
+          <div class="measure-chip"><div class="m-name">Comissões</div></div>
+          <div class="measure-chip"><div class="m-name">Valor Realizado</div></div>
+          <div class="measure-chip"><div class="m-name">Realizado Correto</div></div>
+          <div class="measure-chip"><div class="m-name">Receita Bruta - Custos</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> Resultado \ Acumulado</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">Med_Realizado_Acumulado</div></div>
+          <div class="measure-chip"><div class="m-name">Realizado Ultimos 365 dias</div></div>
+          <div class="measure-chip"><div class="m-name">Realizado Ano.Mes Anterior</div></div>
+          <div class="measure-chip"><div class="m-name">Receita Líquida Acumulada ultimo 12 meses</div></div>
+          <div class="measure-chip"><div class="m-name">Média_3meses Receita Bruta</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> Resultado \ Variação</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">Variação MoM %</div></div>
+          <div class="measure-chip"><div class="m-name">Variação MoM (Formatada)</div></div>
+          <div class="measure-chip"><div class="m-name">Valor_Mes_Anterior</div></div>
+          <div class="measure-chip"><div class="m-name">Desvio MoM</div></div>
+          <div class="measure-chip"><div class="m-name">% Custos MoM</div></div>
+          <div class="measure-chip"><div class="m-name">Custos | Variação Periódica %</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> HTML Cards</div>
+        <div class="measure-grid">
+          <div class="measure-chip">
+            <div class="m-name">HTML_ResultadoFinanceiro</div>
+            <div class="m-desc">Visual HTML Resultado Financeiro v4. Margem depois Comissões.</div>
+          </div>
+          <div class="measure-chip">
+            <div class="m-name">HTML_MonitoramentoDRE</div>
+            <div class="m-desc">Cards KPI monitoramento DRE. Auto-detecta último mês.</div>
+          </div>
+          <div class="measure-chip">
+            <div class="m-name">HTML_DCIS_Header_KPIs</div>
+            <div class="m-desc">KPI strip versão Claude — fundo cinza #DFE1E6.</div>
+          </div>
+          <div class="measure-chip">
+            <div class="m-name">HTML_Val_ReceitaBruta v2</div>
+            <div class="m-desc">Respeita filtro de calendário externo. Fallback último mês.</div>
+          </div>
+          <div class="measure-chip"><div class="m-name">HTML_Bud_ReceitaBruta v2</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_Val_ReceitaLiquida v2</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_Val_Custos v2</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_Val_DespesasOp v2</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_Val_MargemContrib v2</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_Val_MargemAntesComissao v2</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_Val_Comissao v2</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_Val_MargemDepoisComissao v2</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> Orçado x Realizado</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">Total Budget Base</div></div>
+          <div class="measure-chip"><div class="m-name">Total Budget DRE</div></div>
+          <div class="measure-chip"><div class="m-name">Total Budget (Impostos Negativos)</div></div>
+          <div class="measure-chip"><div class="m-name">Med_Valor_Orçado</div></div>
+          <div class="measure-chip"><div class="m-name">Med_Desvio R$</div></div>
+          <div class="measure-chip"><div class="m-name">Med_Desvio %</div></div>
+          <div class="measure-chip"><div class="m-name">Med_Meta_YTD</div></div>
+          <div class="measure-chip"><div class="m-name">Desvio_R$_YTD</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> TCV &amp; MRR</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">Total TCV</div></div>
+          <div class="measure-chip"><div class="m-name">Total TCV Mês Anterior</div></div>
+          <div class="measure-chip"><div class="m-name">Delta TCV/MRR com mes anterior</div></div>
+          <div class="measure-chip"><div class="m-name">% Delta TCV/MRR</div></div>
+          <div class="measure-chip"><div class="m-name">Delta Receita Bruta - MRR</div></div>
+          <div class="measure-chip"><div class="m-name">Receita Bruta Mês Anterior</div></div>
+          <div class="measure-chip"><div class="m-name">Delta Receita Bruta com mes anterior</div></div>
+          <div class="measure-chip"><div class="m-name">% Delta Receita Bruta</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> Headcount</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">HeadCount</div></div>
+          <div class="measure-chip"><div class="m-name">Admissões</div></div>
+          <div class="measure-chip"><div class="m-name">Demissões</div></div>
+          <div class="measure-chip"><div class="m-name">TurnOver</div></div>
+          <div class="measure-chip"><div class="m-name">Custos com Pessoal</div></div>
+          <div class="measure-chip"><div class="m-name">Receita/HC</div></div>
+          <div class="measure-chip"><div class="m-name">Costs/HC</div></div>
+          <div class="measure-chip"><div class="m-name">Variação % HeadCount</div></div>
+          <div class="measure-chip"><div class="m-name">HeadCount Operação</div></div>
+          <div class="measure-chip"><div class="m-name">HeadCount Comercial e ADM</div></div>
+          <div class="measure-chip"><div class="m-name">%Admissões Feminino</div></div>
+          <div class="measure-chip"><div class="m-name">%Demissões Masculino</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> EBITDA</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">EBITDA Core</div></div>
+          <div class="measure-chip"><div class="m-name">EBITDA green4T</div></div>
+          <div class="measure-chip"><div class="m-name">DC Managed Services</div></div>
+          <div class="measure-chip"><div class="m-name">DCIM</div></div>
+          <div class="measure-chip"><div class="m-name">Sismetal</div></div>
+          <div class="measure-chip"><div class="m-name">MDC - g4T</div></div>
+          <div class="measure-chip"><div class="m-name">Strategic Projects</div></div>
+          <div class="measure-chip"><div class="m-name">Technology &amp; Digital Services</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> DRE (Visuals)</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">Valor_Realizado DRE_v2</div></div>
+          <div class="measure-chip"><div class="m-name">Valor_Base_DRE</div></div>
+          <div class="measure-chip"><div class="m-name">Valor_Realizado DRE (Até Comissões)</div></div>
+          <div class="measure-chip"><div class="m-name">Valor_Realizado DRE Budget (Até Comissões)</div></div>
+          <div class="measure-chip"><div class="m-name">Valor_Base_DRE Budget</div></div>
+          <div class="measure-chip"><div class="m-name">Valor_Realizado DRE (Até Comissões) com taxes</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> Scorecard</div>
+        <div class="measure-grid">
+          <div class="measure-chip">
+            <div class="m-name">Scorecard_Desvio_ReceitaBruta</div>
+            <div class="m-desc">Desvio % Receita Bruta no último mês com dado. Usado no Scorecard SharePoint.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> Auxiliares \ Formatação / Títulos / Dicas de Ferramenta</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">ISINSCOPE</div></div>
+          <div class="measure-chip"><div class="m-name">Fora_Mes</div></div>
+          <div class="measure-chip"><div class="m-name">Referência:</div></div>
+          <div class="measure-chip"><div class="m-name">Zero</div></div>
+          <div class="measure-chip"><div class="m-name">Realizado/Percentual</div></div>
+          <div class="measure-chip"><div class="m-name">Dica de Ferramenta DRE</div></div>
+          <div class="measure-chip"><div class="m-name">Dica de Ferramenta Data Emissão</div></div>
+          <div class="measure-chip"><div class="m-name">Dica de Ferramenta Variação Mensal</div></div>
+          <div class="measure-chip"><div class="m-name">Título Matriz Cliente</div></div>
+          <div class="measure-chip"><div class="m-name">Título Consolidado Orçado x Realizado</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUALIDADE DE DADOS -->
+    <section id="qd">
+      <div class="section-title">✅ Qualidade de Dados — Medidas de Monitoramento</div>
+      <div class="alert alert-warn">
+        As medidas abaixo identificam projetos na fato que não possuem correspondência nas dimensões <code>d_Projetos_IFS</code> ou <code>d_Agrupadores_Gerenciais</code>. Monitorar regularmente para garantir integridade do modelo.
+      </div>
+      <div class="card">
+        <div class="card-body" style="padding: 0;">
+          <table>
+            <thead>
+              <tr><th>Medida</th><th>Versão</th><th>Descrição</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>QD | Projetos Sem Dimensão (Qtd)</strong></td>
+                <td>v1 / v2</td>
+                <td>Contagem de projetos distintos na fato sem correspondência nas dimensões. v2 exclui nulos/vazios.</td>
+              </tr>
+              <tr>
+                <td><strong>QD | Alerta Projetos Sem Dimensão</strong></td>
+                <td>v1 / v2</td>
+                <td>Texto de alerta para exibição em card ou título dinâmico.</td>
+              </tr>
+              <tr>
+                <td><strong>QD | Projetos Sem Dimensão (Lista)</strong></td>
+                <td>v1 / v2</td>
+                <td>Retorna 1 para projetos sem dimensão — usar como filtro em tabela de detalhamento.</td>
+              </tr>
+              <tr>
+                <td><strong>QD | Valor Órfãos Sem Dimensão</strong></td>
+                <td>v1</td>
+                <td>Valor financeiro dos projetos sem dimensão — quantifica o impacto.</td>
+              </tr>
+              <tr>
+                <td><strong>QD | Status Projeto nas Dimensões</strong></td>
+                <td>v1 / v2</td>
+                <td>Retorna 'Faltante' ou 'OK' para cada projeto — usar em tabela de auditoria.</td>
+              </tr>
+              <tr>
+                <td><strong>QD | Título</strong></td>
+                <td>—</td>
+                <td>Título dinâmico para seção de qualidade de dados nos relatórios.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- RLS -->
+    <section id="rls">
+      <div class="section-title">🔒 Segurança — Row Level Security (RLS)</div>
+      <div class="card">
+        <div class="card-header">Tabelas com RLS Configurado</div>
+        <div class="card-body" style="padding: 0;">
+          <table>
+            <thead>
+              <tr><th>Tabela</th><th>Escopo</th><th>Observação</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>d_Centro_Custo_IFS_(RLS RH)</strong></td>
+                <td>RH / Headcount</td>
+                <td>Restringe visibilidade de centros de custo para a área de RH. Tabela separada da d_Centro_Custo_IFS principal.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Projetos_IFS_Gerentes</strong></td>
+                <td>Gerentes de Projeto</td>
+                <td>Visão filtrada de projetos para gerentes — conectada ao f_Budget.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Projetos_IFS_Gerentes_Executivos</strong></td>
+                <td>Executivos</td>
+                <td>Visão de projetos para gerentes executivos — conectada ao f_Resultado_Consolidado.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Usuarios_IFS / d_Usuarios_IFS_Gerente_Executivo</strong></td>
+                <td>Usuários IFS</td>
+                <td>Dimensão de usuários para filtragem por manager. Base do RLS por gestor.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTAS TÉCNICAS -->
+    <section id="notas">
+      <div class="section-title">📝 Notas Técnicas</div>
+
+      <div class="card">
+        <div class="card-header">Padrões de Design do Modelo</div>
+        <div class="card-body">
+          <table>
+            <thead>
+              <tr><th>Padrão</th><th>Implementação</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Filtro por período (De/Até)</strong></td>
+                <td><code>d_Período1</code> e <code>d_Período2</code> com relacionamento bidirecional Many:Many via <code>ano.mes</code> na <code>d_Calendario</code>. Permite seleção de intervalo nos relatórios.</td>
+              </tr>
+              <tr>
+                <td><strong>Budget com TREATAS</strong></td>
+                <td>Medidas de budget usam <code>TREATAS</code> + <code>d_Mascara_DRE</code> para propagar filtros de linha DRE corretamente — evita uso direto de <code>f_Budget[Premissas]</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>ISFILTERED vs COUNTROWS</strong></td>
+                <td>Medidas de período usam <code>ISFILTERED(...)</code> para distinguir seleção explícita de slicer de filtros de página — mais confiável que <code>COUNTROWS(VALUES(...))</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>CSS em DAX — SUBSTITUTE</strong></td>
+                <td>Medidas HTML usam <code>SUBSTITUTE(FORMAT(valor,"#,##0.0"), ",", ".")</code> para evitar que o separador decimal DAX quebre atributos CSS como <code>width</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>HTML Cards — bloco VALORES</strong></td>
+                <td>Medidas HTML seguem padrão: declaração de variáveis no bloco <code>// ====== VALORES ======</code> no topo para reusabilidade e legibilidade.</td>
+              </tr>
+              <tr>
+                <td><strong>Detecção automática de mês</strong></td>
+                <td>Medidas v2 detectam automaticamente o último mês com dado realizado — eliminam necessidade de seleção manual no slicer de calendário.</td>
+              </tr>
+              <tr>
+                <td><strong>DirectQuery — impacto</strong></td>
+                <td>Todo cálculo é executado em tempo real contra o IFS Oracle. Evitar medidas com <code>COUNTROWS(ALL(...))</code> em larga escala. Preferir <code>ISFILTERED</code> e <code>SELECTEDVALUE</code>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="alert alert-warn" style="margin-top: 16px;">
+        <strong>⚠ Atenção ao renomear colunas:</strong> Por ser base DirectQuery de 8 relatórios downstream, qualquer renomeação de coluna ou remoção de tabela quebra os relatórios conectados. Sempre use <strong>aliás em Power Query</strong> e valide impacto antes de publicar.
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <strong style="color: #44AD4D;">green<span style="color: #3EBED3;">4T</span></strong> &nbsp;|&nbsp;
+  Documentação gerada automaticamente via Power BI MCP + Claude &nbsp;|&nbsp;
+  Razão Consolidado — Modelo Semântico &nbsp;|&nbsp;
+  22/06/2026
+</footer>
+
+</body>
+</html>
