@@ -12,7 +12,7 @@ O projeto apresenta **3 variações visuais de DRE**, permitindo que gestores es
 [<img width="942" height="529" alt="img_dre3" src="https://github.com/user-attachments/assets/086e0746-ee64-4d23-89a5-d4387cc06564" />](https://app.powerbi.com/view?r=eyJrIjoiOTY3ZWYzOTAtMWZlZC00YzNhLWFjZmYtZDVlMDliMjM1ZmUzIiwidCI6ImVhMDhmYTU2LTVhMzYtNGIxOS05NTgzLWNjNTBmNmIxN2Y3MiJ9)
 
 ---
-## 📊 Power BI – Controle de Acesso (Parada de Equipamentos – Refinaria)
+## 📊 Power BI – Controle de Acesso 
 
 👉 **[Acessar relatório interativo](https://app.powerbi.com/view?r=eyJrIjoiYjYwODQxYWUtYWY0MS00NTcwLWIxMjYtZDE4OGMwNTgzNjFkIiwidCI6ImVhMDhmYTU2LTVhMzYtNGIxOS05NTgzLWNjNTBmNmIxN2Y3MiJ9)**
 
