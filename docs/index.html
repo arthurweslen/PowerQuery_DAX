@@ -384,7 +384,7 @@
   </div>
   <div class="header-meta">
     <strong>Razão Consolidado — Modelo Semântico Power BI</strong>
-    Gerado em: 22/06/2026 &nbsp;|&nbsp; DirectQuery &nbsp;|&nbsp; Ambiente: Desktop
+    Gerado em: 10/09/2026 &nbsp;|&nbsp; DirectQuery &nbsp;|&nbsp; Ambiente: Desktop
   </div>
 </header>
 
@@ -418,7 +418,7 @@
     <!-- HERO -->
     <div class="hero" id="overview">
       <h1>Razão Consolidado</h1>
-      <p>Modelo semântico central da Green4T. Fonte única de verdade financeira para todos os relatórios FP&amp;A, conectado via <strong>DirectQuery</strong> ao IFS Oracle. Serve como base de dados para 8 relatórios downstream, incluindo Realizado G4T, MRR, Controle de Gente e Operações.</p>
+      <p>Modelo semântico central da Green4T. Fonte única de verdade financeira para todos os relatórios FP&amp;A, conectado via <strong>DirectQuery</strong> ao IFS Oracle. Serve como base de dados para 8 relatórios downstream, incluindo Realizado G4T, MRR, Controle de Gente e Operações. Desde a última publicação, o modelo cresceu de forma relevante: rede de Headcount muito mais rica (admissões, demissões e ativos com dimensões de sexo, cargo, nível, cliente e área de negócio), rede comercial de TCV expandida (macro, linha de negócio, tipo de receita, status), e uma segunda máscara de DRE (<code>d_Mascara_DRE_v2</code>) convivendo com a v1.</p>
       <div class="hero-tags">
         <span class="tag">DirectQuery</span>
         <span class="tag">IFS Oracle SQL</span>
@@ -431,11 +431,11 @@
     <!-- STATS -->
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-value">114</div>
+        <div class="stat-value">119</div>
         <div class="stat-label">Relacionamentos</div>
       </div>
       <div class="stat-card green">
-        <div class="stat-value">190</div>
+        <div class="stat-value">213</div>
         <div class="stat-label">Medidas DAX</div>
       </div>
       <div class="stat-card orange">
@@ -443,9 +443,12 @@
         <div class="stat-label">Relatórios Downstream</div>
       </div>
       <div class="stat-card dark">
-        <div class="stat-value">1066+</div>
+        <div class="stat-value">1296</div>
         <div class="stat-label">Colunas no Modelo</div>
       </div>
+    </div>
+    <div class="alert alert-info" style="margin-top:-14px;">
+      O modelo possui <strong>126 tabelas</strong> ao todo (compatibility level 1606), incluindo tabelas de suporte, parâmetros de what-if (<code>p_*</code>) e calendários automáticos ocultos gerados pelo Power BI (<code>LocalDateTable_*</code>). A tabela abaixo lista apenas as tabelas de negócio relevantes para consumo nos relatórios.
     </div>
 
     <!-- DOWNSTREAM -->
@@ -568,7 +571,19 @@
                 <td><strong>f_Passivo</strong></td>
                 <td><span class="badge badge-fact">Fato</span></td>
                 <td><code>Data_Lancto · Account · Empresa</code></td>
-                <td>Lançamentos de passivo/provisões. Complementa DRE com visão patrimonial.</td>
+                <td>Lançamentos de passivo/provisões. Complementa DRE com visão patrimonial. (oculta)</td>
+              </tr>
+              <tr>
+                <td><strong>f_Razao_IFS_Novos</strong></td>
+                <td><span class="badge badge-fact">Fato</span></td>
+                <td><code>Data_Lancto · Data_Lancto_1</code></td>
+                <td>Novo layout do razão IFS (73 colunas) em consolidação — coexiste com f_Razao_IFS durante a migração.</td>
+              </tr>
+              <tr>
+                <td><strong>f_Orçamentos</strong></td>
+                <td><span class="badge badge-fact">Fato</span></td>
+                <td><code>—</code></td>
+                <td>Fato auxiliar de orçamento (4 colunas), usada em conjunto com f_Budget e f_Orcamento_2025.</td>
               </tr>
             </tbody>
           </table>
@@ -675,6 +690,42 @@
                 <td><code>d_Atualização</code></td>
                 <td>Data da última atualização do modelo. Exibida nos cards de monitoramento.</td>
               </tr>
+              <tr>
+                <td><strong>d_Mascara_DRE_v2</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Descrição</code></td>
+                <td>Nova versão da máscara DRE (32 linhas, contra 16 da v1) — liga-se a <code>d_Plano_de_Contas[Linha DRE]</code>. As duas máscaras coexistem; sempre confirmar qual versão uma medida referencia antes de criar dependentes.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Clientes_IFS</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Customer_Id</code></td>
+                <td>Clientes cadastrados no IFS (view CUSTOMER_INFO) — relacionada às dimensões de projetos por gerente.</td>
+              </tr>
+              <tr>
+                <td><strong>d_Cambio</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>—</code></td>
+                <td>Câmbio usado no cálculo do valor ajustado para moedas Brasil/Latam. (oculta)</td>
+              </tr>
+              <tr>
+                <td><strong>d_Data_Emissao</strong></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>Chave_Composta</code></td>
+                <td>Data de emissão do documento contábil, ligada a f_Resultado_Consolidado via chave composta — usada na "Dica de Ferramenta Data Emissão".</td>
+              </tr>
+              <tr>
+                <td><strong>Dimensões de Headcount</strong><br><span style="font-weight:400; color:var(--text-muted);">d_Sexo · d_Cargo · d_Nível · d_Centro_de_Custos · d_Cliente · d_Agrupamento_Área · d_Área_Negócio · d_Matrículas · d_Nome headCount · d_Empresa Headcount</span></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>vários</code></td>
+                <td>Conjunto de dimensões de apoio adicionado para abrir f_Admissões / f_Demissões / f_Ativos por sexo, cargo, nível, cliente, área de negócio e centro de custo (usadas no relatório Controle de Gente).</td>
+              </tr>
+              <tr>
+                <td><strong>Dimensões de TCV / Comercial</strong><br><span style="font-weight:400; color:var(--text-muted);">d_Tipo_TCV · d_Type_Public_TCV · d_IDOPP_TCV · d_Status_TCV · d_Macro_TCV · d_Line_Of_Business_TCV · d_Check_Aquisições_TCV · d_Revenue_Profile_TCV</span></td>
+                <td><span class="badge badge-dim">Dimensão</span></td>
+                <td><code>vários</code></td>
+                <td>Rede de dimensões que classifica f_TCV por tipo, status, macro-segmento, linha de negócio e perfil de receita — reforça o relatório de MRR/Indicadores de Receita.</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -686,7 +737,7 @@
       <div class="section-title">↔ Relacionamentos — Chave de Negócio</div>
 
       <div class="alert alert-info">
-        O modelo possui <strong>114 relacionamentos</strong> no total. Abaixo estão os relacionamentos de negócio mais relevantes. Relacionamentos com <code>LocalDateTable_*</code> são gerados automaticamente pelo Power BI para colunas de data e não requerem manutenção manual.
+        O modelo possui <strong>119 relacionamentos</strong> no total. Abaixo estão os relacionamentos de negócio mais relevantes. Relacionamentos com <code>LocalDateTable_*</code> são gerados automaticamente pelo Power BI para colunas de data e não requerem manutenção manual.
       </div>
 
       <div class="card">
@@ -709,12 +760,34 @@
           <div class="rel-row"><span class="rel-from">f_Razao_IFS</span><span class="rel-col">[Account]</span><span class="rel-arrow">→</span><span class="rel-to">d_Plano_de_Contas</span><span class="rel-col">[Nº Conta Contábil IFS]</span><div class="rel-dir">Many → One</div></div>
           <div class="rel-row"><span class="rel-from">f_Budget</span><span class="rel-col">[Conta Contábil]</span><span class="rel-arrow">→</span><span class="rel-to">d_Plano_de_Contas</span><span class="rel-col">[Nº Conta Contábil IFS]</span><div class="rel-dir">Many → One</div></div>
           <div class="rel-row"><span class="rel-from">d_Plano_de_Contas</span><span class="rel-col">[Linha DRE]</span><span class="rel-arrow">→</span><span class="rel-to">d_Mascara_DRE</span><span class="rel-col">[Rótulos de Linha]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">d_Plano_de_Contas</span><span class="rel-col">[Linha DRE]</span><span class="rel-arrow">→</span><span class="rel-to">d_Mascara_DRE_v2</span><span class="rel-col">[Descrição]</span><div class="rel-dir">Many → One</div></div>
           <div class="rel-row"><span class="rel-from">d_Mascara_DRE</span><span class="rel-col">[Rotulos]</span><span class="rel-arrow">→</span><span class="rel-to">d_Rótulos</span><span class="rel-col">[Rótulos]</span><div class="rel-dir">Many → One</div></div>
         </div>
       </div>
 
       <div class="card" style="margin-top:16px;">
-        <div class="card-header">Relacionamentos Bidirecionais (⚠ atenção ao performance)</div>
+        <div class="card-header">Headcount — Fatos → Dimensões de Apoio</div>
+        <div class="card-body" style="padding: 12px 16px;">
+          <div class="rel-row"><span class="rel-from">f_Admissões / f_Demissões / f_Ativos</span><span class="rel-col">[Sexo]</span><span class="rel-arrow">→</span><span class="rel-to">d_Sexo</span><span class="rel-col">[Sexo]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_Admissões / f_Demissões / f_Ativos</span><span class="rel-col">[Cargo]</span><span class="rel-arrow">→</span><span class="rel-to">d_Cargo</span><span class="rel-col">[Cargo]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_Admissões / f_Demissões / f_Ativos</span><span class="rel-col">[Centro de Custo]</span><span class="rel-arrow">→</span><span class="rel-to">d_Centro_de_Custos</span><span class="rel-col">[Centro de Custo]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_Admissões / f_Demissões / f_Ativos</span><span class="rel-col">[Matrícula]</span><span class="rel-arrow">→</span><span class="rel-to">d_Matrículas</span><span class="rel-col">[Matrícula]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_Admissões / f_Demissões / f_Ativos</span><span class="rel-col">[CodContrato&amp;CentroCusto]</span><span class="rel-arrow">→</span><span class="rel-to">d_Agrupadores_Gerenciais / d_Projetos_IFS</span><span class="rel-col">[Código Projeto Atual]</span><div class="rel-dir">Many → One</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-header">TCV / Comercial — f_TCV → Dimensões</div>
+        <div class="card-body" style="padding: 12px 16px;">
+          <div class="rel-row"><span class="rel-from">f_TCV</span><span class="rel-col">[CODIGO PROJETO_Contrato_Salesforce]</span><span class="rel-arrow">→</span><span class="rel-to">d_Projetos_IFS / d_Agrupadores_Gerenciais / d_Macro_TCV / d_Type_Public_TCV</span><span class="rel-col">[Project_Id / vários]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_TCV</span><span class="rel-col">[Tipo / Status_ / Location]</span><span class="rel-arrow">→</span><span class="rel-to">d_Tipo_TCV / d_Status_TCV / d_Location_TCV</span><span class="rel-col">[vários]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_TCV</span><span class="rel-col">[Line of Business / Revenue Profile]</span><span class="rel-arrow">→</span><span class="rel-to">d_Line_Of_Business_TCV / d_Revenue_Profile_TCV</span><span class="rel-col">[vários]</span><div class="rel-dir">Many → One</div></div>
+          <div class="rel-row"><span class="rel-from">f_Resultado_Consolidado</span><span class="rel-col">[Projeto]</span><span class="rel-arrow">→</span><span class="rel-to">d_Type_Public_TCV / d_Macro_TCV</span><span class="rel-col">[Código Projeto Salesforce]</span><div class="rel-dir">Many → One</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-header">Bidirecionais (⚠ atenção ao performance)</div>
         <div class="card-body" style="padding: 12px 16px;">
           <div class="rel-row"><span class="rel-from">d_Calendario</span><span class="rel-col">[ano.mes]</span><span class="rel-arrow">⟷</span><span class="rel-to">d_Período1</span><span class="rel-col">[ano.mes]</span><div class="rel-dir">Both · Many:Many</div></div>
           <div class="rel-row"><span class="rel-from">d_Calendario</span><span class="rel-col">[ano.mes]</span><span class="rel-arrow">⟷</span><span class="rel-to">d_Período2</span><span class="rel-col">[ano.mes]</span><div class="rel-dir">Both · Many:Many</div></div>
@@ -723,11 +796,18 @@
           <div class="rel-row"><span class="rel-from">d_Plano_de_Contas</span><span class="rel-col">[Nº Conta]</span><span class="rel-arrow">⟷</span><span class="rel-to">d_TipCustosBudget</span><span class="rel-col">[Gerencial_Conta]</span><div class="rel-dir">Both · One:One</div></div>
         </div>
       </div>
+
+      <div class="alert alert-warn" style="margin-top:16px;">
+        <strong>f_Budget e f_Resultado_Consolidado ganharam novas ligações:</strong> f_Budget agora também se conecta a <code>d_Projetos_IFS_Gerentes</code>, <code>d_Cliente_Localização</code>, <code>d_Texto_Receita_Bruta</code>, <code>d_País</code> e <code>d_Fornecedor</code>; f_Resultado_Consolidado também se conecta a <code>d_Fornecedores_Pacote_Despesas</code>, <code>d_Fornecedor</code>, <code>d_Centro_Custo_IFS_(RLS RH)</code> e <code>d_Data_Emissao</code> (via Chave_Composta). Validar impacto antes de remover qualquer uma dessas colunas de origem.
+      </div>
     </section>
 
     <!-- MEDIDAS -->
     <section id="medidas">
-      <div class="section-title">📐 Medidas DAX — 190 total</div>
+      <div class="section-title">📐 Medidas DAX — 213 total</div>
+      <div class="alert alert-info">
+        213 medidas vivem na tabela <code>Medidas</code> (191) e em <code>Medidas POC e Rentabilidade</code> (4), além de medidas técnicas embutidas em tabelas fato. Cerca de uma dúzia estão na pasta <code>_Rascunho</code> (testes/protótipos) e foram omitidas desta documentação por não serem destinadas a consumo em relatório.
+      </div>
 
       <div class="folder-group">
         <div class="folder-label"><span class="folder-icon">📁</span> Resultado</div>
@@ -771,7 +851,11 @@
         <div class="measure-grid">
           <div class="measure-chip">
             <div class="m-name">HTML_ResultadoFinanceiro</div>
-            <div class="m-desc">Visual HTML Resultado Financeiro v4. Margem depois Comissões.</div>
+            <div class="m-desc">Visual HTML Resultado Financeiro — v5, modularizado. Regra de mês de referência centralizada em HTML_UltimoMes_Ref; CSS, header e cards vivem em medidas auxiliares.</div>
+          </div>
+          <div class="measure-chip">
+            <div class="m-name">HTML_UltimoMes_Ref</div>
+            <div class="m-desc">Mês de referência centralizado: até o dia 11 usa M-1, do dia 12 em diante usa o mês atual (limitado ao último mês com dado realizado).</div>
           </div>
           <div class="measure-chip">
             <div class="m-name">HTML_MonitoramentoDRE</div>
@@ -781,18 +865,34 @@
             <div class="m-name">HTML_DCIS_Header_KPIs</div>
             <div class="m-desc">KPI strip versão Claude — fundo cinza #DFE1E6.</div>
           </div>
+          <div class="measure-chip"><div class="m-name">HTML_Marquee_Atualização</div></div>
           <div class="measure-chip">
             <div class="m-name">HTML_Val_ReceitaBruta v2</div>
             <div class="m-desc">Respeita filtro de calendário externo. Fallback último mês.</div>
           </div>
           <div class="measure-chip"><div class="m-name">HTML_Bud_ReceitaBruta v2</div></div>
           <div class="measure-chip"><div class="m-name">HTML_Val_ReceitaLiquida v2</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_Bud_ReceitaLiquida v2</div></div>
           <div class="measure-chip"><div class="m-name">HTML_Val_Custos v2</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_Bud_Custos v2</div></div>
           <div class="measure-chip"><div class="m-name">HTML_Val_DespesasOp v2</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_Bud_DespesasOp v2</div></div>
           <div class="measure-chip"><div class="m-name">HTML_Val_MargemContrib v2</div></div>
           <div class="measure-chip"><div class="m-name">HTML_Val_MargemAntesComissao v2</div></div>
           <div class="measure-chip"><div class="m-name">HTML_Val_Comissao v2</div></div>
           <div class="measure-chip"><div class="m-name">HTML_Val_MargemDepoisComissao v2</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_Val_ReceitaBruta / Bud_ReceitaBruta / Val_ReceitaLiquida / Bud_ReceitaLiquida / Val_Custos / Bud_Custos / Val_MargemContrib / Val_DespesasOp / Bud_DespesasOp</div><div class="m-desc">Versões v1 (sem filtro de calendário externo), mantidas por compatibilidade.</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> HTML Cards \ Resultado Financeiro (Aux)</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">HTML_RF_CSS</div><div class="m-desc">CSS extraído da medida principal para modularidade.</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_RF_ttRB / ttRL / ttCU / ttMAC / ttMDC</div><div class="m-desc">Tooltips por região (Brasil/Latam) de Receita Bruta, Receita Líquida, Custos e Margens.</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_RF_MesRef</div><div class="m-desc">Rótulo do período de referência (chip verde do header).</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_RF_SubTitulo</div></div>
+          <div class="measure-chip"><div class="m-name">HTML_RF_cardRB / cardRL / cardCU / cardMAC / cardMDC</div><div class="m-desc">Cards individuais (Receita Bruta, Líquida, Custos, Margem antes/depois de Comissões).</div></div>
         </div>
       </div>
 
@@ -829,16 +929,26 @@
         <div class="measure-grid">
           <div class="measure-chip"><div class="m-name">HeadCount</div></div>
           <div class="measure-chip"><div class="m-name">Admissões</div></div>
+          <div class="measure-chip"><div class="m-name">Admissões Card</div></div>
           <div class="measure-chip"><div class="m-name">Demissões</div></div>
+          <div class="measure-chip"><div class="m-name">Demissões Card</div></div>
           <div class="measure-chip"><div class="m-name">TurnOver</div></div>
           <div class="measure-chip"><div class="m-name">Custos com Pessoal</div></div>
+          <div class="measure-chip"><div class="m-name">Custos Pessoal x HeadCount</div></div>
           <div class="measure-chip"><div class="m-name">Receita/HC</div></div>
           <div class="measure-chip"><div class="m-name">Costs/HC</div></div>
           <div class="measure-chip"><div class="m-name">Variação % HeadCount</div></div>
+          <div class="measure-chip"><div class="m-name">Variação % Custo com Pessoal</div></div>
+          <div class="measure-chip"><div class="m-name">Variação % Costs/HC</div></div>
+          <div class="measure-chip"><div class="m-name">Variação % Receita/HC</div></div>
           <div class="measure-chip"><div class="m-name">HeadCount Operação</div></div>
           <div class="measure-chip"><div class="m-name">HeadCount Comercial e ADM</div></div>
-          <div class="measure-chip"><div class="m-name">%Admissões Feminino</div></div>
-          <div class="measure-chip"><div class="m-name">%Demissões Masculino</div></div>
+          <div class="measure-chip"><div class="m-name">Dif. HCr</div></div>
+          <div class="measure-chip"><div class="m-name">%Admissões Feminino / Masculino</div></div>
+          <div class="measure-chip"><div class="m-name">%Demissões Feminino / Masculino</div></div>
+          <div class="measure-chip"><div class="m-name">Titulo HeadCount Comercial &amp; Adm</div></div>
+          <div class="measure-chip"><div class="m-name">Titulo Headcount por Operação</div></div>
+          <div class="measure-chip"><div class="m-name">Titulo Headcount por Sexo</div></div>
         </div>
       </div>
 
@@ -869,6 +979,37 @@
       </div>
 
       <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> DRE (Visuals) \ Cascata</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">Cascata_Base</div><div class="m-desc">Segmento invisível que posiciona a barra flutuante do waterfall.</div></div>
+          <div class="measure-chip"><div class="m-name">Cascata_Cinza / Cascata_Cinza_Neg</div><div class="m-desc">Série cinza (#404040) — barras-âncora: Receita Bruta e subtotais/pilares do DRE.</div></div>
+          <div class="measure-chip"><div class="m-name">Cascata_Verde / Cascata_Verde_Neg</div><div class="m-desc">Série verde (#44AD4D) — fluxos com variação positiva.</div></div>
+          <div class="measure-chip"><div class="m-name">Cascata_Vermelho / Cascata_Vermelho_Neg</div><div class="m-desc">Série vermelha (#D64550) — fluxos que reduzem o resultado.</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> Despesas</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">Med_Valor_Realizado_Formatado</div></div>
+          <div class="measure-chip"><div class="m-name">%Total Administração de Pessoal / %Total Gente / %Total SSMA</div></div>
+          <div class="measure-chip"><div class="m-name">Valor Grafico Custos</div></div>
+          <div class="measure-chip"><div class="m-name">Target Custos 2025Q4</div></div>
+          <div class="measure-chip"><div class="m-name">Impostos / Impostos 'Positivos'</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> Outras (Desvios / Metas)</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">Desvio por pacote de contas / centro de custo / SG&amp;A / Fornecedor / Conta Contábil / Agrp C.C.3</div><div class="m-desc">Família de medidas de desvio orçado x realizado por diferentes recortes.</div></div>
+          <div class="measure-chip"><div class="m-name">Med_Meta_Acumulada / Med_Meta_YTD / Med_Meta_YTD_negativa</div></div>
+          <div class="measure-chip"><div class="m-name">Med_Desvio_R$_Meta / Med_Desvio_Meta %</div></div>
+          <div class="measure-chip"><div class="m-name">Margem Bruta (%) / Margem (%) pós Comissões / Margem pós Comissões</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
         <div class="folder-label"><span class="folder-icon">📁</span> Scorecard</div>
         <div class="measure-grid">
           <div class="measure-chip">
@@ -879,18 +1020,36 @@
       </div>
 
       <div class="folder-group">
-        <div class="folder-label"><span class="folder-icon">📁</span> Auxiliares \ Formatação / Títulos / Dicas de Ferramenta</div>
+        <div class="folder-label"><span class="folder-icon">📁</span> Auxiliares \ Formatação</div>
         <div class="measure-grid">
           <div class="measure-chip"><div class="m-name">ISINSCOPE</div></div>
           <div class="measure-chip"><div class="m-name">Fora_Mes</div></div>
-          <div class="measure-chip"><div class="m-name">Referência:</div></div>
-          <div class="measure-chip"><div class="m-name">Zero</div></div>
+          <div class="measure-chip"><div class="m-name">Referência: / Zero</div></div>
           <div class="measure-chip"><div class="m-name">Realizado/Percentual</div></div>
+          <div class="measure-chip"><div class="m-name">Icone Percentual 12 Meses / Icone Realizado x Média Móvel</div></div>
+          <div class="measure-chip"><div class="m-name">Obs Status</div></div>
+          <div class="measure-chip"><div class="m-name">Ano_1_grafico / Ano_2_grafico</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> Auxiliares \ Dicas de Ferramenta</div>
+        <div class="measure-grid">
           <div class="measure-chip"><div class="m-name">Dica de Ferramenta DRE</div></div>
+          <div class="measure-chip"><div class="m-name">Dica de Ferramenta DRE resumo</div></div>
           <div class="measure-chip"><div class="m-name">Dica de Ferramenta Data Emissão</div></div>
           <div class="measure-chip"><div class="m-name">Dica de Ferramenta Variação Mensal</div></div>
-          <div class="measure-chip"><div class="m-name">Título Matriz Cliente</div></div>
-          <div class="measure-chip"><div class="m-name">Título Consolidado Orçado x Realizado</div></div>
+        </div>
+      </div>
+
+      <div class="folder-group">
+        <div class="folder-label"><span class="folder-icon">📁</span> Auxiliares \ Títulos</div>
+        <div class="measure-grid">
+          <div class="measure-chip"><div class="m-name">Título Matriz Cliente / Matriz P&amp;L / Matriz Pacote de Contas</div></div>
+          <div class="measure-chip"><div class="m-name">Título Consolidado Orçado x Realizado (e "até comissões")</div></div>
+          <div class="measure-chip"><div class="m-name">Título Custo e Regional</div></div>
+          <div class="measure-chip"><div class="m-name">Título Análise Mensal do MRR/TCV/CHURN</div></div>
+          <div class="measure-chip"><div class="m-name">Título Comparação Mês Atual x Mês Anterior</div></div>
         </div>
       </div>
     </section>
@@ -947,8 +1106,42 @@
     <!-- RLS -->
     <section id="rls">
       <div class="section-title">🔒 Segurança — Row Level Security (RLS)</div>
+      <div class="alert alert-info">
+        O modelo tem hoje <strong>19 roles</strong> configuradas (contra 4 tabelas de apoio documentadas anteriormente). A maioria filtra por empresa (<code>d_Empresa_IFS</code>) e/ou por projeto (<code>d_Projetos_IFS</code>), com um pequeno grupo de roles "dinâmicas" que usam <code>USERPRINCIPALNAME()</code> contra as dimensões de usuário IFS para filtrar automaticamente pelo gestor logado.
+      </div>
       <div class="card">
-        <div class="card-header">Tabelas com RLS Configurado</div>
+        <div class="card-header">Roles do Modelo</div>
+        <div class="card-body" style="padding: 0;">
+          <table>
+            <thead>
+              <tr><th>Role</th><th>Tabelas Filtradas</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Acesso Total</strong></td><td>Nenhuma (sem filtro — acesso irrestrito ao modelo)</td></tr>
+              <tr><td><strong>C-Level</strong></td><td>d_Empresa_IFS</td></tr>
+              <tr><td><strong>LATAM</strong></td><td>d_Empresa_IFS</td></tr>
+              <tr><td><strong>Supply Manager</strong></td><td>d_Empresa_IFS</td></tr>
+              <tr><td><strong>People Manager</strong></td><td>d_Empresa_IFS</td></tr>
+              <tr><td><strong>IT_Manager</strong></td><td>d_Empresa_IFS</td></tr>
+              <tr><td><strong>DCIS_Gerentes</strong></td><td>d_Empresa_IFS, f_Resultado_Consolidado</td></tr>
+              <tr><td><strong>DCIM Manager</strong></td><td>d_Empresa_IFS, f_Resultado_Consolidado</td></tr>
+              <tr><td><strong>IT Contracts Managers</strong></td><td>d_Empresa_IFS, f_Resultado_Consolidado</td></tr>
+              <tr><td><strong>Brasil DCIM&amp;DCIS</strong></td><td>d_Empresa_IFS, f_Resultado_Consolidado</td></tr>
+              <tr><td><strong>Edu Lourenço Manager</strong></td><td>d_Empresa_IFS, d_Projetos_IFS</td></tr>
+              <tr><td><strong>PMO</strong></td><td>d_Empresa_IFS, d_Projetos_IFS</td></tr>
+              <tr><td><strong>PMO_IT</strong></td><td>d_Empresa_IFS, d_Projetos_IFS</td></tr>
+              <tr><td><strong>Braz Batista TIM</strong></td><td>d_Projetos_IFS, d_Empresa_IFS</td></tr>
+              <tr><td><strong>Marcelo Marinho</strong></td><td>d_Empresa_IFS, d_Projetos_IFS</td></tr>
+              <tr><td><strong>Strategic Brasil (+)</strong></td><td>d_Projetos_IFS</td></tr>
+              <tr><td><strong>Não Recorrente</strong></td><td>d_Projetos_IFS</td></tr>
+              <tr><td><strong>Dinamico_Gerentes</strong></td><td>d_Usuarios_IFS — filtro dinâmico pelo e-mail do gestor logado</td></tr>
+              <tr><td><strong>Dinamico_Gerente_Executivo</strong></td><td>d_Usuarios_IFS_Gerente_Executivo — filtro dinâmico pelo e-mail do executivo logado</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px;">
+        <div class="card-header">Tabelas de Apoio ao RLS</div>
         <div class="card-body" style="padding: 0;">
           <table>
             <thead>
@@ -973,7 +1166,7 @@
               <tr>
                 <td><strong>d_Usuarios_IFS / d_Usuarios_IFS_Gerente_Executivo</strong></td>
                 <td>Usuários IFS</td>
-                <td>Dimensão de usuários para filtragem por manager. Base do RLS por gestor.</td>
+                <td>Dimensão de usuários para filtragem por manager. Base do RLS dinâmico por gestor.</td>
               </tr>
             </tbody>
           </table>
@@ -1021,6 +1214,22 @@
                 <td><strong>DirectQuery — impacto</strong></td>
                 <td>Todo cálculo é executado em tempo real contra o IFS Oracle. Evitar medidas com <code>COUNTROWS(ALL(...))</code> em larga escala. Preferir <code>ISFILTERED</code> e <code>SELECTEDVALUE</code>.</td>
               </tr>
+              <tr>
+                <td><strong>Regra de fechamento (dia 12)</strong></td>
+                <td>Centralizada na medida oculta <code>HTML_UltimoMes_Ref</code>: até o dia 11 do mês, os cards de resultado usam o mês anterior (M-1), pois o fechamento contábil ainda está em andamento; do dia 12 em diante, usam o mês corrente. Substituiu a lógica <code>UltimoMes</code> que estava duplicada em 13 medidas.</td>
+              </tr>
+              <tr>
+                <td><strong>Duas máscaras de DRE coexistindo</strong></td>
+                <td><code>d_Mascara_DRE</code> (v1, 16 linhas) e <code>d_Mascara_DRE_v2</code> (v2, 32 linhas) convivem no modelo. Sempre confirmar qual versão uma medida referencia antes de criar dependentes.</td>
+              </tr>
+              <tr>
+                <td><strong>Waterfall DRE (Cascata)</strong></td>
+                <td>O visual nativo de waterfall não suporta subtotais derivados de máscara. Solução: colunas empilhadas com séries <code>Cascata_Cinza/Verde/Vermelho</code> (+ variantes <code>_Neg</code> para barras que cruzam o zero), dividido em dois gráficos — "Formação do EBITDA" e "Do EBITDA ao Lucro Líquido".</td>
+              </tr>
+              <tr>
+                <td><strong>Payload do MCP de modelagem</strong></td>
+                <td>Medidas HTML muito grandes (~15KB) estouram o limite de payload (~8KB) do <code>powerbi-modeling-mcp</code>. Solução: decompor em medidas auxiliares menores (ex.: pasta <code>HTML Cards\Resultado Financeiro (Aux)</code>).</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -1038,7 +1247,7 @@
   <strong style="color: #44AD4D;">green<span style="color: #3EBED3;">4T</span></strong> &nbsp;|&nbsp;
   Documentação gerada automaticamente via Power BI MCP + Claude &nbsp;|&nbsp;
   Razão Consolidado — Modelo Semântico &nbsp;|&nbsp;
-  22/06/2026
+  10/09/2026
 </footer>
 
 </body>
